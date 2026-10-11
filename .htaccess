@@ -2,8 +2,9 @@ AddDefaultCharset UTF-8
 
 RewriteEngine On
 
-# http -> https
+# http -> https (с учётом nginx-прокси перед Apache)
 RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # bare domain -> www
