@@ -1,1 +1,1207 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="styles.css"></head><body><h1>ShikBlesk</h1><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShikBlesk — Косметолог-эстетист в Мытищах</title>
+  <meta name="description" content="ShikBlesk — кабинет косметолога-эстетиста Евгении в Мытищах. Чистки, пилинги, мезотерапия, RF-лифтинг, SPA-уходы. Запись онлайн." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --ink: #2c2c2c;
+      --ink-light: #4a4a4a;
+      --paper: #f7f3eb;
+      --paper-dark: #ebe4d6;
+      --accent: #c45c4a;
+      --accent-soft: #e8a598;
+      --line: #3d3d3d;
+      --shadow: rgba(44, 44, 44, 0.12);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .wave-divider {
+      height: 28px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0 15 Q30 5 60 15 T120 15 T180 15 T240 15 T300 15 T360 15 T420 15 T480 15 T540 15 T600 15 T660 15 T720 15 T780 15 T840 15 T900 15 T960 15 T1020 15 T1080 15 T1140 15 T1200 15' fill='none' stroke='%233d3d3d' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x center;
+      background-size: 600px 28px;
+      opacity: 0.7;
+      margin: 0 auto;
+      max-width: 90%;
+    }
+    h1, h2, h3, .logo, .hand {
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    h1 { font-size: clamp(3.2rem, 8vw, 5.5rem); line-height: 1.05; }
+    h2 { font-size: clamp(2.4rem, 5vw, 3.4rem); }
+    h3 { font-size: clamp(1.5rem, 3vw, 1.9rem); }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 1.5rem;
+      background: rgba(247, 243, 235, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    header.scrolled {
+      border-bottom-color: var(--line);
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 2rem; color: var(--ink); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    nav { display: flex; gap: 1.8rem; align-items: center; }
+    nav a {
+      color: var(--ink); text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      position: relative; transition: color 0.2s;
+    }
+    nav a::after {
+      content: ''; position: absolute; left: 0; bottom: -3px;
+      width: 0; height: 2px; background: var(--accent);
+      transition: width 0.3s; border-radius: 2px;
+    }
+    nav a:hover::after { width: 100%; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.85rem 1.7rem;
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.95rem;
+      color: var(--paper); background: var(--ink);
+      border: 2.5px solid var(--ink);
+      border-radius: 255px 20px 225px 15px / 20px 225px 15px 255px;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.25s ease; box-shadow: 3px 3px 0 transparent;
+    }
+    .btn:hover {
+      background: var(--accent); border-color: var(--accent);
+      transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink);
+    }
+    .btn-outline { background: transparent; color: var(--ink); }
+    .btn-outline:hover { background: var(--ink); color: var(--paper); }
+    .btn-sm { padding: 0.55rem 1.2rem; font-size: 0.88rem; }
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.4rem; }
+    .mobile-toggle span {
+      display: block; width: 24px; height: 2.5px; background: var(--ink);
+      margin: 5px 0; border-radius: 2px;
+    }
+
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 7rem 1.5rem 4rem; position: relative; overflow: hidden;
+    }
+    .hero-content {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-block; padding: 0.35rem 1rem; font-size: 0.85rem; font-weight: 500;
+      background: var(--paper-dark); border: 2px solid var(--line);
+      border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+      margin-bottom: 1.2rem; transform: rotate(-1.5deg);
+    }
+    .hero h1 { margin-bottom: 1.2rem; }
+    .hero h1 .accent { color: var(--accent); }
+    .hero-desc { font-size: 1.15rem; color: var(--ink-light); max-width: 28rem; margin-bottom: 2rem; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+    .hero-meta { display: flex; gap: 2rem; font-size: 0.9rem; color: var(--ink-light); }
+    .hero-meta strong {
+      display: block; font-size: 1.4rem; color: var(--ink); font-family: 'Caveat', cursive;
+    }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .sketch-frame { width: 100%; max-width: 420px; aspect-ratio: 1; }
+    .sketch-frame svg { width: 100%; height: 100%; filter: drop-shadow(4px 6px 0 var(--shadow)); }
+
+    section { padding: 5rem 1.5rem; position: relative; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header p { max-width: 36rem; margin: 0.8rem auto 0; color: var(--ink-light); font-size: 1.05rem; }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .about-card { background: var(--paper); padding: 2rem; position: relative; }
+    .about-card::before {
+      content: ''; position: absolute; inset: -4px;
+      border: 2.5px solid var(--line);
+      border-radius: 255px 25px 225px 25px / 25px 225px 25px 255px; z-index: -1;
+    }
+    .about-list { list-style: none; margin-top: 1.5rem; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      margin-bottom: 1rem; font-size: 1.02rem;
+    }
+    .about-list li::before { content: '✦'; color: var(--accent); font-size: 1.1rem; flex-shrink: 0; }
+
+    /* Services */
+    .cat-tabs {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .cat-tab {
+      padding: 0.55rem 1.25rem; font-size: 0.9rem; font-weight: 500;
+      background: transparent; border: 2px solid var(--line);
+      border-radius: 40% 60% 55% 45% / 55% 40% 60% 45%;
+      cursor: pointer; color: var(--ink); transition: all 0.25s;
+      font-family: inherit;
+    }
+    .cat-tab:hover, .cat-tab.active {
+      background: var(--ink); color: var(--paper); border-color: var(--ink);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--paper); padding: 1.6rem 1.4rem;
+      position: relative; transition: transform 0.3s ease;
+      display: flex; flex-direction: column;
+    }
+    .service-card::before {
+      content: ''; position: absolute; inset: 0;
+      border: 2.5px solid var(--line);
+      border-radius: 40% 60% 55% 45% / 55% 45% 60% 40%;
+      transition: border-radius 0.4s ease; pointer-events: none;
+    }
+    .service-card:hover { transform: translateY(-5px) rotate(-0.4deg); }
+    .service-card:hover::before { border-radius: 55% 45% 40% 60% / 45% 55% 45% 55%; }
+    .service-card h3 { margin-bottom: 0.45rem; font-size: 1.45rem; line-height: 1.2; }
+    .service-card .svc-desc {
+      color: var(--ink-light); font-size: 0.92rem; margin-bottom: 1rem; flex-grow: 1;
+    }
+    .service-card .svc-meta {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 0.75rem; margin-top: auto; flex-wrap: wrap;
+    }
+    .service-price {
+      font-family: 'Caveat', cursive; font-size: 1.45rem;
+      color: var(--accent); font-weight: 600; line-height: 1.2;
+    }
+    .service-time { font-size: 0.82rem; color: var(--ink-light); }
+    .svc-actions { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+    .category-block { display: none; }
+    .category-block.active { display: block; animation: fadeIn 0.35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(44,44,44,0.55);
+      z-index: 200; display: none; align-items: center; justify-content: center;
+      padding: 1.5rem; backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--paper); max-width: 560px; width: 100%;
+      max-height: 90vh; overflow-y: auto; padding: 2rem 1.8rem;
+      position: relative; border: 2.5px solid var(--line);
+      border-radius: 255px 20px 225px 15px / 20px 225px 15px 255px;
+      box-shadow: 6px 8px 0 var(--shadow);
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      background: none; border: none; font-size: 1.6rem;
+      cursor: pointer; color: var(--ink); line-height: 1;
+    }
+    .modal h3 { margin-bottom: 0.6rem; padding-right: 2rem; }
+    .modal .modal-price {
+      font-family: 'Caveat', cursive; font-size: 1.6rem;
+      color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .modal .modal-time { font-size: 0.9rem; color: var(--ink-light); margin-bottom: 1.2rem; }
+    .modal p { margin-bottom: 1rem; color: var(--ink-light); font-size: 0.98rem; }
+    .modal h4 {
+      font-family: 'Caveat', cursive; font-size: 1.35rem;
+      margin: 1.2rem 0 0.5rem; color: var(--ink);
+    }
+    .modal ul { margin: 0 0 1.2rem 1.2rem; color: var(--ink-light); }
+    .modal ul li { margin-bottom: 0.35rem; }
+
+    /* Booking */
+    .booking-section { background: var(--paper-dark); }
+    .booking-wrapper {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 1rem; font-size: 1.05rem;
+    }
+    .contact-item svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .booking-form {
+      background: var(--paper); padding: 2.2rem; position: relative;
+    }
+    .booking-form::before {
+      content: ''; position: absolute; inset: -5px;
+      border: 2.5px solid var(--line);
+      border-radius: 255px 20px 225px 15px / 20px 225px 15px 255px; z-index: -1;
+    }
+    .form-group { margin-bottom: 1.3rem; }
+    .form-group label {
+      display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.4rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.75rem 1rem; font-family: inherit; font-size: 1rem;
+      background: var(--paper); border: 2px solid var(--line);
+      border-radius: 12px 18px 10px 16px / 16px 10px 18px 12px;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--accent); box-shadow: 0 0 0 3px rgba(196, 92, 74, 0.15);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-note { font-size: 0.85rem; color: var(--ink-light); margin-top: 1rem; text-align: center; }
+
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem;
+    }
+    .testimonial { padding: 1.8rem; position: relative; background: var(--paper); }
+    .testimonial::before {
+      content: ''; position: absolute; inset: 0;
+      border: 2px solid var(--line);
+      border-radius: 30% 70% 50% 50% / 50% 40% 60% 50%;
+    }
+    .testimonial-text { font-style: italic; margin-bottom: 1.2rem; position: relative; z-index: 1; }
+    .testimonial-author { font-weight: 600; position: relative; z-index: 1; }
+    .testimonial-author span { display: block; font-weight: 400; font-size: 0.85rem; color: var(--ink-light); }
+
+    footer {
+      padding: 3rem 1.5rem 2rem; border-top: 2.5px solid var(--line); text-align: center;
+    }
+    .footer-logo { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links {
+      display: flex; justify-content: center; gap: 1.5rem; margin: 1.2rem 0; flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--ink-light); text-decoration: none; font-size: 0.95rem; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 0.85rem; color: var(--ink-light); margin-top: 1.5rem; }
+
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: var(--ink); color: var(--paper);
+      padding: 1rem 1.8rem;
+      border-radius: 255px 20px 225px 15px / 20px 225px 15px 255px;
+      font-weight: 500; z-index: 300;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero-content, .about-grid, .booking-wrapper { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; max-width: 320px; margin: 0 auto; }
+      nav {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--paper); flex-direction: column; padding: 1.5rem;
+        border-bottom: 2px solid var(--line); gap: 1rem;
+      }
+      nav.open { display: flex; }
+      .mobile-toggle { display: block; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 1.2rem; }
+      .hero { padding-top: 6rem; }
+    }
+  
+</style>
+</head>
+<body>
+  <header id="header">
+    <div class="header-inner">
+      <a href="#" class="logo">Shik<span>Blesk</span></a>
+      <nav id="nav">
+        <a href="#about">О нас</a>
+        <a href="#services">Услуги</a>
+        <a href="#booking">Запись</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#booking" class="btn" style="padding: 0.6rem 1.3rem; font-size: 0.9rem;">Записаться</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">Мытищи · ул. Лётная</div>
+        <h1>Красота, <span class="accent">нарисованная</span><br>с заботой</h1>
+        <p class="hero-desc">
+          Кабинет косметолога-эстетиста Евгении — современный уход за кожей в уютной атмосфере. Чистки, пилинги, аппаратные процедуры и персональные ритуалы красоты.
+        </p>
+        <div class="hero-cta">
+          <a href="#booking" class="btn">Записаться на приём</a>
+          <a href="#services" class="btn btn-outline">Смотреть услуги</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>5+</strong> лет опыта</div>
+          <div><strong>1200+</strong> довольных клиентов</div>
+          <div><strong>100%</strong> индивидуально</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="sketch-frame">
+          <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 200 Q60 60 200 45 Q340 55 355 200 Q345 345 200 360 Q55 350 50 200" stroke="#2c2c2c" stroke-width="3" stroke-linecap="round" fill="#f7f3eb"/>
+            <path d="M120 145 Q130 95 200 90 Q275 95 285 150 Q295 230 200 290 Q105 230 120 145" stroke="#2c2c2c" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <path d="M150 165 Q165 155 180 165" stroke="#2c2c2c" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="165" cy="168" r="4" fill="#2c2c2c"/>
+            <path d="M220 165 Q235 155 250 165" stroke="#2c2c2c" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="235" cy="168" r="4" fill="#2c2c2c"/>
+            <path d="M200 175 Q208 200 195 215" stroke="#2c2c2c" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M170 235 Q200 255 230 235" stroke="#c45c4a" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <path d="M170 235 Q200 245 230 235" stroke="#c45c4a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M115 140 Q90 100 130 70 Q180 40 220 55 Q280 45 310 90 Q330 130 290 155" stroke="#2c2c2c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M125 130 Q105 95 145 75" stroke="#2c2c2c" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M280 140 Q300 100 270 80" stroke="#2c2c2c" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M320 120 L325 130 L335 125 L325 135 L330 145 L320 138 L310 145 L315 135 L305 125 L315 130 Z" fill="#c45c4a" opacity="0.9"/>
+            <path d="M80 180 L83 187 L90 184 L84 190 L87 197 L80 193 L73 197 L76 190 L70 184 L77 187 Z" fill="#c45c4a" opacity="0.7"/>
+            <circle cx="340" cy="220" r="3" fill="#2c2c2c"/>
+            <circle cx="70" cy="250" r="2.5" fill="#2c2c2c"/>
+            <path d="M310 280 Q320 270 330 285 Q320 290 310 280" stroke="#2c2c2c" stroke-width="1.8" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>О кабинете ShikBlesk</h2>
+        <p>Место, где современная эстетика встречается с тёплым, почти рукотворным подходом к красоте</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Почему выбирают нас</h3>
+          <ul class="about-list">
+            <li>Только бережные и эффективные процедуры без агрессии к коже</li>
+            <li>Индивидуальный подбор ухода под ваш тип кожи и цели</li>
+            <li>Уютная атмосфера и внимание к каждой детали</li>
+            <li>Работаем в Мытищах, ул. Лётная — удобно для жителей города</li>
+            <li>Честные рекомендации без навязывания лишних услуг</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size: 1.15rem; margin-bottom: 1.5rem; color: var(--ink-light);">
+            Меня зовут Евгения, я косметолог-эстетист с многолетним опытом. В ShikBlesk я создала пространство, где каждая процедура — это маленький ритуал заботы о себе.
+          </p>
+          <p style="font-size: 1.05rem; color: var(--ink-light);">
+            Мы используем проверенную профессиональную косметику и современные аппаратные методики. Главное для меня — чтобы вы уходили не только с красивой кожей, но и с ощущением лёгкости и уверенности.
+          </p>
+          <div style="margin-top: 2rem;">
+            <a href="#booking" class="btn">Записаться на консультацию</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Услуги и цены</h2>
+        <p>Выберите категорию — откройте подробности по любой процедуре</p>
+      </div>
+
+      <div class="cat-tabs" id="catTabs">
+        <button class="cat-tab active" data-cat="clean">Чистки</button>
+        <button class="cat-tab" data-cat="hardware">Аппаратные</button>
+        <button class="cat-tab" data-cat="peels">Пилинги</button>
+        <button class="cat-tab" data-cat="care">Уходы</button>
+        <button class="cat-tab" data-cat="other">Другое</button>
+      </div>
+
+      <!-- Чистки -->
+      <div class="category-block active" id="cat-clean">
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Многоэтапная чистка лица</h3>
+            <p class="svc-desc">Очищение, тонизация, дезинкрустация, алмазная дермабразия, эксфолиация, пилинг, маска, увлажнение</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">от 4 200 ₽</div>
+                <div class="service-time">1,5–2 часа</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('clean-full')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Чистка подросткам 10–14 лет</h3>
+            <p class="svc-desc">Очищение, тонизация, дезинкрустация, эксфолиация, увлажнение — мягкий протокол для молодой кожи</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">от 2 800 ₽</div>
+                <div class="service-time">1 час</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('clean-teen')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>УЗ-чистка + увлажнение</h3>
+            <p class="svc-desc">Бережное ультразвуковое очищение с последующим увлажнением</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">3 300 ₽</div>
+                <div class="service-time">40 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('clean-uz')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Аппаратные -->
+      <div class="category-block" id="cat-hardware">
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Фракционная мезотерапия</h3>
+            <p class="svc-desc">Немецкие препараты или препараты Испании / Швейцарии</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">от 3 900 ₽</div>
+                <div class="service-time">50 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('meso')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Алмазная дермабразия (лицо)</h3>
+            <p class="svc-desc">+ увлажнение. Выравнивание рельефа и тона</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">3 300 ₽</div>
+                <div class="service-time">40 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('diamond-face')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Алмазная дермабразия (декольте, плечи)</h3>
+            <p class="svc-desc">+ пилинг</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">2 800 ₽</div>
+                <div class="service-time">30 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('diamond-decollete')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Алмазная дермабразия (спина)</h3>
+            <p class="svc-desc">+ пилинг</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">2 600 ₽</div>
+                <div class="service-time">30 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('diamond-back')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Алмазная дермабразия (ноги)</h3>
+            <p class="svc-desc">+ пилинг</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">1 600 ₽</div>
+                <div class="service-time">15 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('diamond-legs')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Карбокситерапия</h3>
+            <p class="svc-desc">Одноэтапная или многоэтапная</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">от 3 300 ₽</div>
+                <div class="service-time">50 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('carboxy')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Микротоки</h3>
+            <p class="svc-desc">Под токопроводящий гель или филлер с ГК</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">от 3 300 ₽</div>
+                <div class="service-time">40 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('micro')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Фонофорез</h3>
+            <p class="svc-desc">Под токопроводящий гель или филлер с ГК</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">от 3 300 ₽</div>
+                <div class="service-time">30 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('phono')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Ионофорез</h3>
+            <p class="svc-desc">Под токопроводящий гель или филлер с ГК</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">от 3 300 ₽</div>
+                <div class="service-time">40 мин</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('iono')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>RF-лифтинг лица</h3>
+            <p class="svc-desc">Термолифтинг — подтяжка и уплотнение кожи</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">3 600 ₽</div>
+                <div class="service-time">—</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('rf')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Пилинги -->
+      <div class="category-block" id="cat-peels">
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Жёлтый пилинг</h3>
+            <p class="svc-desc">Испания. Мощное обновление и сияние</p>
+            <div class="svc-meta"><div class="service-price">4 200 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-yellow')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Жёлтый пилинг + УЗ-чистка</h3>
+            <p class="svc-desc">Комплекс для максимального эффекта</p>
+            <div class="svc-meta"><div class="service-price">4 900 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-yellow-uz')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Пилинг ТСА</h3>
+            <p class="svc-desc">Глубокое обновление, работа с текстурой</p>
+            <div class="svc-meta"><div class="service-price">3 900 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-tca')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Пилинг Джесснера</h3>
+            <p class="svc-desc">Классика для жирной и комбинированной кожи</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-jessner')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Миндальный пилинг</h3>
+            <p class="svc-desc">Мягкий, подходит для чувствительной кожи</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-mandelic')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Молочный пилинг</h3>
+            <p class="svc-desc">Увлажнение + лёгкое обновление</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-lactic')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Виноградный пилинг</h3>
+            <p class="svc-desc">Антиоксидантный эффект и сияние</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-grape')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Anti-age peel</h3>
+            <p class="svc-desc">Работа с возрастными изменениями</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-antiage')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Салициловый пилинг</h3>
+            <p class="svc-desc">Для проблемной и жирной кожи</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-salicylic')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Гликолевый пилинг</h3>
+            <p class="svc-desc">Выравнивание тона и рельефа</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-glycolic')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Мезопилинг</h3>
+            <p class="svc-desc">Сочетание пилинга и мезоэффекта</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-meso')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Анти-акне пилинг</h3>
+            <p class="svc-desc">Специально для кожи с акне и постакне</p>
+            <div class="svc-meta"><div class="service-price">3 300 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('peel-acne')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Уходы -->
+      <div class="category-block" id="cat-care">
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>SPA-уход</h3>
+            <p class="svc-desc">Полноценный ритуал заботы о коже</p>
+            <div class="svc-meta">
+              <div>
+                <div class="service-price">от 3 300 ₽</div>
+                <div class="service-time">1 час</div>
+              </div>
+            </div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('spa')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Другое -->
+      <div class="category-block" id="cat-other">
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Удаление милиумов, папиллом</h3>
+            <p class="svc-desc">До 5 шт.</p>
+            <div class="svc-meta"><div class="service-price">600 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('removal')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Татуаж губ</h3>
+            <p class="svc-desc">Перманентный макияж губ</p>
+            <div class="svc-meta"><div class="service-price">8 000 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('tattoo')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <h3>Консультация</h3>
+            <p class="svc-desc">Разбор ухода, рекомендации, подбор процедуры</p>
+            <div class="svc-meta"><div class="service-price">1 000 ₽</div></div>
+            <div class="svc-actions">
+              <button class="btn btn-sm btn-outline" onclick="openModal('consult')">Подробнее</button>
+              <a href="#booking" class="btn btn-sm">Записаться</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <section id="booking" class="booking-section">
+    <div class="container">
+      <div class="booking-wrapper">
+        <div class="booking-info">
+          <h2>Запись на приём</h2>
+          <p>Оставьте заявку — Евгения свяжется с вами в течение дня, чтобы подтвердить время и ответить на вопросы.</p>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2c2c2c" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>+7 (985) 889-95-17</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2c2c2c" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>г. Мытищи, ул. Лётная</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2c2c2c" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>Пн–Сб: 10:00–20:00</span>
+          </div>
+        </div>
+
+        <form class="booking-form" id="bookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Ваше имя *</label>
+              <input type="text" id="name" name="name" required placeholder="Анна" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Телефон *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+7 (985) 000-00-00" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Услуга</label>
+            <select id="service" name="service">
+              <option value="">Выберите услугу</option>
+              <optgroup label="Чистки">
+                <option value="clean-full">Многоэтапная чистка лица</option>
+                <option value="clean-teen">Чистка подросткам</option>
+                <option value="clean-uz">УЗ-чистка + увлажнение</option>
+              </optgroup>
+              <optgroup label="Аппаратные">
+                <option value="meso">Фракционная мезотерапия</option>
+                <option value="diamond">Алмазная дермабразия</option>
+                <option value="carboxy">Карбокситерапия</option>
+                <option value="micro">Микротоки</option>
+                <option value="phono">Фонофорез</option>
+                <option value="iono">Ионофорез</option>
+                <option value="rf">RF-лифтинг</option>
+              </optgroup>
+              <optgroup label="Пилинги">
+                <option value="peel">Пилинг (уточните в комментарии)</option>
+              </optgroup>
+              <optgroup label="Другое">
+                <option value="spa">SPA-уход</option>
+                <option value="removal">Удаление милиумов/папиллом</option>
+                <option value="tattoo">Татуаж губ</option>
+                <option value="consult">Консультация</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Желаемая дата</label>
+              <input type="date" id="date" name="date" />
+            </div>
+            <div class="form-group">
+              <label for="time">Удобное время</label>
+              <select id="time" name="time">
+                <option value="">Любое</option>
+                <option>10:00</option><option>11:00</option><option>12:00</option>
+                <option>13:00</option><option>14:00</option><option>15:00</option>
+                <option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Комментарий</label>
+            <textarea id="message" name="message" rows="3" placeholder="Есть пожелания или вопросы?"></textarea>
+          </div>
+          <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
+          <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider"></div>
+
+  <section id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <h2>Отзывы клиентов</h2>
+        <p>Немного тёплых слов от тех, кто уже побывал в ShikBlesk</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="testimonial-text">«После чистки кожа просто сияет! Евгения очень внимательная, всё объясняет и не торопит. Теперь хожу только сюда.»</p>
+          <div class="testimonial-author">Мария<span>Мытищи</span></div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">«Люблю увлажняющие уходы — эффект сразу виден. Атмосфера очень спокойная, как будто в уютной мастерской художника.»</p>
+          <div class="testimonial-author">Елена<span>Королёв</span></div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">«Микротоки + RF — лучшее сочетание перед важным событием. Лицо подтянутое и отдохнувшее. Рекомендую!»</p>
+          <div class="testimonial-author">Ольга<span>Москва</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo hand">Shik<span>Blesk</span></div>
+      <p style="color: var(--ink-light); max-width: 28rem; margin: 0 auto;">Косметолог-эстетист Евгения в Мытищах. Забота о вашей коже в современном креативном формате.</p>
+      <div class="footer-links">
+        <a href="#about">О нас</a>
+        <a href="#services">Услуги</a>
+        <a href="#booking">Запись</a>
+        <a href="#reviews">Отзывы</a>
+      </div>
+      <p class="footer-copy">© 2026 ShikBlesk · Мытищи, ул. Лётная · +7 (985) 889-95-17</p>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalContent">
+      <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Заявка отправлена! Евгения скоро свяжется с вами ✨</div>
+
+  <script>
+
+    const servicesData = {
+      'clean-full': {
+        title: 'Многоэтапная чистка лица',
+        price: 'от 4 200 ₽',
+        time: '1,5–2 часа',
+        desc: 'Комплексная процедура, включающая очищение, тонизацию, дезинкрустацию, алмазную дермабразию, эксфолиацию, пилинг, маску и увлажнение. Глубоко очищает поры, убирает комедоны и подготовливает кожу к дальнейшему уходу.',
+        results: ['Чистые поры и ровный тон', 'Меньше воспалений и чёрных точек', 'Свежий, отдохнувший вид кожи', 'Улучшение проникновения уходовых средств']
+      },
+      'clean-teen': {
+        title: 'Чистка подросткам 10–14 лет',
+        price: 'от 2 800 ₽',
+        time: '1 час',
+        desc: 'Мягкий протокол специально для подростковой кожи: очищение, тонизация, дезинкрустация, эксфолиация и увлажнение. Без агрессивных воздействий.',
+        results: ['Бережное очищение без травмирования', 'Снижение жирности и воспалений', 'Привыкание к правильному уходу', 'Комфорт для чувствительной молодой кожи']
+      },
+      'clean-uz': {
+        title: 'УЗ-чистка + увлажнение',
+        price: '3 300 ₽',
+        time: '40 мин',
+        desc: 'Ультразвуковая чистка — один из самых бережных способов очищения. Идеально для регулярного ухода и чувствительной кожи.',
+        results: ['Мягкое очищение без покраснений', 'Улучшение микроциркуляции', 'Увлажнённая, сияющая кожа', 'Подходит для частого применения']
+      },
+      'meso': {
+        title: 'Фракционная мезотерапия',
+        price: 'от 3 900 ₽ (Испания/Швейцария) · 4 200 ₽ (немецкие препараты)',
+        time: '50 мин',
+        desc: 'Введение активных компонентов с помощью микроигл. Стимулирует обновление, увлажняет и улучшает качество кожи изнутри.',
+        results: ['Повышение упругости и плотности', 'Улучшение тона и текстуры', 'Глубокое увлажнение', 'Эффект «свежей» кожи']
+      },
+      'diamond-face': {
+        title: 'Алмазная дермабразия (лицо) + увлажнение',
+        price: '3 300 ₽',
+        time: '40 мин',
+        desc: 'Механическое выравнивание поверхности кожи с помощью алмазных насадок. Убирает ороговевший слой, готовит кожу к уходу.',
+        results: ['Более гладкая текстура', 'Выравнивание тона', 'Уменьшение тусклости', 'Лучшее впитывание средств']
+      },
+      'diamond-decollete': {
+        title: 'Алмазная дермабразия (декольте, плечи) + пилинг',
+        price: '2 800 ₽',
+        time: '30 мин',
+        desc: 'Работа с зоной декольте и плеч — часто забываемой, но важной для общего впечатления.',
+        results: ['Ровный тон кожи в зоне декольте', 'Меньше шероховатости', 'Ухоженный вид открытых зон']
+      },
+      'diamond-back': {
+        title: 'Алмазная дермабразия (спина) + пилинг',
+        price: '2 600 ₽',
+        time: '30 мин',
+        desc: 'Очищение и выравнивание кожи спины — особенно актуально при закрытых комедонах и неровностях.',
+        results: ['Чище и ровнее кожа спины', 'Меньше высыпаний', 'Комфорт под одеждой']
+      },
+      'diamond-legs': {
+        title: 'Алмазная дермабразия (ноги) + пилинг',
+        price: '1 600 ₽',
+        time: '15 мин',
+        desc: 'Быстрая процедура для гладкости кожи ног.',
+        results: ['Мягкая, гладкая кожа', 'Подготовка к сезону открытой обуви']
+      },
+      'carboxy': {
+        title: 'Карбокситерапия',
+        price: 'одноэтапная 3 300 ₽ · многоэтапная 3 800 ₽',
+        time: '50 мин',
+        desc: 'Насыщение кожи углекислым газом. Улучшает кровообращение, стимулирует обновление и даёт эффект «свежести».',
+        results: ['Улучшение цвета лица', 'Снижение отёчности', 'Более упругая кожа', 'Эффект после первой процедуры']
+      },
+      'micro': {
+        title: 'Микротоки',
+        price: 'под гель 3 300 ₽ · под филлер с ГК 3 600 ₽',
+        time: '40 мин',
+        desc: 'Мягкая электростимуляция мышц и кожи. Лифтинг, дренаж, тонус без инъекций.',
+        results: ['Подтянутый овал', 'Меньше отёков', 'Отдохнувший вид', 'Отличный «перед событием» эффект']
+      },
+      'phono': {
+        title: 'Фонофорез',
+        price: 'под гель 3 300 ₽ · под филлер с ГК 3 600 ₽',
+        time: '30 мин',
+        desc: 'Введение активных веществ с помощью ультразвука. Усиливает проникновение и действие препаратов.',
+        results: ['Глубокое увлажнение', 'Улучшение текстуры', 'Усиление действия сывороток']
+      },
+      'iono': {
+        title: 'Ионофорез',
+        price: 'под гель 3 300 ₽ · под филлер с ГК 3 600 ₽',
+        time: '40 мин',
+        desc: 'Доставка активных компонентов с помощью гальванического тока. Точечное воздействие на задачи кожи.',
+        results: ['Целевое решение проблем', 'Улучшение тонуса', 'Более ровный тон']
+      },
+      'rf': {
+        title: 'RF-лифтинг лица (термолифтинг)',
+        price: '3 600 ₽',
+        time: '—',
+        desc: 'Радиочастотное воздействие нагревает глубокие слои кожи, стимулирует коллаген и даёт эффект подтяжки.',
+        results: ['Уплотнение и лифтинг', 'Улучшение контуров', 'Более упругая кожа', 'Накопительный эффект курса']
+      },
+      'peel-yellow': {
+        title: 'Жёлтый пилинг (Испания)',
+        price: '4 200 ₽',
+        time: '—',
+        desc: 'Один из самых эффективных пилингов для обновления, сияния и работы с пигментацией и текстурой.',
+        results: ['Заметное обновление кожи', 'Сияние и ровный тон', 'Уменьшение пигментации', 'Эффект «новой кожи»']
+      },
+      'peel-yellow-uz': {
+        title: 'Жёлтый пилинг + УЗ-чистка',
+        price: '4 900 ₽',
+        time: '—',
+        desc: 'Комбинация глубокого очищения и мощного обновляющего пилинга для максимального результата.',
+        results: ['Чистая + обновлённая кожа', 'Выраженное сияние', 'Комплексный эффект за один визит']
+      },
+      'peel-tca': {
+        title: 'Пилинг ТСА',
+        price: '3 900 ₽',
+        time: '—',
+        desc: 'Трихлоруксусный пилинг для более глубокой работы с текстурой, рубцами и возрастными изменениями.',
+        results: ['Выравнивание рельефа', 'Уменьшение постакне', 'Более плотная кожа']
+      },
+      'peel-jessner': {
+        title: 'Пилинг Джесснера',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Классический состав для жирной, комбинированной и проблемной кожи.',
+        results: ['Контроль себума', 'Меньше высыпаний', 'Более чистый тон']
+      },
+      'peel-mandelic': {
+        title: 'Миндальный пилинг',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Один из самых мягких пилингов. Подходит даже чувствительной коже и летом (с защитой).',
+        results: ['Мягкое обновление', 'Выравнивание тона', 'Минимум реабилитации']
+      },
+      'peel-lactic': {
+        title: 'Молочный пилинг',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Увлажняющий и обновляющий. Идеален для сухой и обезвоженной кожи.',
+        results: ['Увлажнение + лёгкий пилинг', 'Мягкость и комфорт', 'Сияние']
+      },
+      'peel-grape': {
+        title: 'Виноградный пилинг',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Антиоксидантный пилинг с эффектом сияния и защиты от свободных радикалов.',
+        results: ['Антиоксидантная поддержка', 'Свежий цвет лица', 'Лёгкое обновление']
+      },
+      'peel-antiage': {
+        title: 'Anti-age peel',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Пилинговый протокол, направленный на возрастные изменения: тонус, плотность, мелкие морщины.',
+        results: ['Улучшение тонуса', 'Более ровная текстура', 'Эффект «отдыхнувшей» кожи']
+      },
+      'peel-salicylic': {
+        title: 'Салициловый пилинг',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Для жирной, проблемной кожи и работы с комедонами.',
+        results: ['Очищение пор', 'Меньше воспалений', 'Матирующий эффект']
+      },
+      'peel-glycolic': {
+        title: 'Гликолевый пилинг',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Классика для выравнивания тона, текстуры и тусклости.',
+        results: ['Ровный тон', 'Гладкость', 'Сияние']
+      },
+      'peel-meso': {
+        title: 'Мезопилинг',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Сочетает отшелушивание и мезотерапевтический эффект активных компонентов.',
+        results: ['Обновление + питание', 'Улучшение качества кожи']
+      },
+      'peel-acne': {
+        title: 'Анти-акне пилинг',
+        price: '3 300 ₽',
+        time: '—',
+        desc: 'Специализированный протокол для кожи с акне и постакне.',
+        results: ['Снижение воспалений', 'Работа с постакне', 'Более чистая кожа']
+      },
+      'spa': {
+        title: 'SPA-уход',
+        price: 'от 3 300 ₽',
+        time: '1 час',
+        desc: 'Полноценный ритуал: очищение, активные сыворотки, маска, массаж и финальный уход. Для тех, кто хочет не только результат, но и удовольствие.',
+        results: ['Глубокое расслабление', 'Увлажнённая, сияющая кожа', 'Ощущение заботы о себе']
+      },
+      'removal': {
+        title: 'Удаление милиумов, папиллом',
+        price: '600 ₽ (до 5 шт.)',
+        time: '—',
+        desc: 'Аккуратное удаление милиумов (белых узелков) и папиллом.',
+        results: ['Чистая кожа без «зёрен»', 'Минимальная травматизация']
+      },
+      'tattoo': {
+        title: 'Татуаж губ',
+        price: '8 000 ₽',
+        time: '—',
+        desc: 'Перманентный макияж губ — естественный цвет и форма на долгое время.',
+        results: ['Выразительные губы без ежедневного макияжа', 'Коррекция формы и цвета']
+      },
+      'consult': {
+        title: 'Консультация',
+        price: '1 000 ₽',
+        time: '—',
+        desc: 'Разбор текущего ухода, диагностика состояния кожи, рекомендации и подбор оптимальных процедур.',
+        results: ['Понятный план ухода', 'Экономия на ненужных средствах', 'Индивидуальные рекомендации']
+      }
+    };
+
+    // Tabs
+    document.querySelectorAll('.cat-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.category-block').forEach(b => b.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('cat-' + tab.dataset.cat).classList.add('active');
+      });
+    });
+
+    // Modal
+    function openModal(id) {
+      const data = servicesData[id];
+      if (!data) return;
+      const body = document.getElementById('modalBody');
+      body.innerHTML = `
+        <h3>${data.title}</h3>
+        <div class="modal-price">${data.price}</div>
+        <div class="modal-time">${data.time}</div>
+        <p>${data.desc}</p>
+        <h4>Что вы получите</h4>
+        <ul>${data.results.map(r => `<li>${r}</li>`).join('')}</ul>
+        <a href="#booking" class="btn" style="width:100%;margin-top:0.5rem;" onclick="closeModal()">Записаться на эту услугу</a>
+      `;
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('modalOverlay').addEventListener('click', e => {
+      if (e.target.id === 'modalOverlay') closeModal();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Header + menu
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
+    const toggle = document.getElementById('mobileToggle');
+    const nav = document.getElementById('nav');
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+    // Form
+    const form = document.getElementById('bookingForm');
+    const toast = document.getElementById('toast');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      toast.classList.add('show');
+      form.reset();
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    });
+    const dateInput = document.getElementById('date');
+    if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+  
+</script>
+</body>
+</html>
