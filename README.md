@@ -26,6 +26,7 @@
 shikblesk/
 ├── index.html          # Весь сайт (один файл: HTML + CSS + JS)
 ├── favicon.svg         # Иконка
+├── og-cover.png        # Обложка для соцсетей (1200x630)
 ├── robots.txt          # Для поисковиков
 ├── sitemap.xml         # Карта сайта
 └── README.md           # Этот файл
