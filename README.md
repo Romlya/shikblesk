@@ -3,7 +3,7 @@
 Одностраничный сайт для кабинета косметолога-эстетиста **Евгении** в Мытищах (Московская область).
 
 **Живой сайт:** https://www.cosmetolog77.ru  
-**Зеркало:** https://shikblesk.vercel.app (бэкап)  
+**Зеркало:** https://shikblesk.vercel.app — только 301-редирект на основной домен (проект не удален)  
 **Репозиторий:** https://github.com/Romlya/shikblesk
 
 ---
@@ -114,11 +114,17 @@ shikblesk/
 
 ## Как обновлять сайт
 
-1. Редактируй `index.html`
-2. Заливай изменения в GitHub (ветка `main`)
-3. Vercel автоматически деплоит
+Основной хостинг — Reg.ru, все правки деплоятся туда:
 
-Или через Vercel Dashboard → Deployments → Upload.
+1. Редактируй `index.html` (и `robots.txt` / `sitemap.xml` при смене URL)
+2. Коммить в GitHub (ветка `main`) — это источник правды
+3. Залей изменившиеся файлы по FTP в `www/cosmetolog77.ru`:
+   `index.html`, `.htaccess`, `favicon.svg`, `og-cover.png`, `robots.txt`, `sitemap.xml`
+   (`vercel.json` на хостинг НЕ заливать — он только для Vercel-зеркала)
+4. Проверь `https://www.cosmetolog77.ru/`
+
+Vercel-зеркало (`vercel.json` → 301 на основной домен) трогать не нужно,
+оно обновляется только если меняется сам редирект.
 
 ---
 
