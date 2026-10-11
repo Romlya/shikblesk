@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shikblesk.vercel.app/sitemap.xml
