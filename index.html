@@ -321,6 +321,14 @@
     .testimonial-text { font-style: italic; margin-bottom: 1.2rem; position: relative; z-index: 1; }
     .testimonial-author { font-weight: 600; position: relative; z-index: 1; }
     .testimonial-author span { display: block; font-weight: 400; font-size: 0.85rem; color: var(--ink-light); }
+    .testimonial-author a { color: var(--accent); }
+    .rating-badge {
+      display: inline-block; padding: 0.15rem 0.9rem; font-size: 0.95rem; font-weight: 600;
+      background: var(--paper-dark); border: 2px solid var(--line);
+      border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+      transform: rotate(-1deg); white-space: nowrap;
+    }
+    .reviews-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 2.2rem; }
 
     footer {
       padding: 3rem 1.5rem 2rem; border-top: 2.5px solid var(--line); text-align: center;
@@ -1177,21 +1185,38 @@ l-5 -38 21 45 c91 193 226 577 374 1060 37 118 68 221 70 228 3 6 0 12 -4 12
     <div class="container">
       <div class="section-header">
         <h2>Отзывы клиентов</h2>
-        <p>Немного тёплых слов от тех, кто уже побывал в ShikBlesk</p>
+        <p><span class="rating-badge">★ 4,9 на Яндекс.Картах</span></p>
+        <p>33 отзыва · награда «Хорошее место 2026» — вот что пишут гости кабинета</p>
       </div>
       <div class="testimonials-grid">
         <div class="testimonial">
-          <p class="testimonial-text">«После чистки кожа просто сияет! Евгения очень внимательная, всё объясняет и не торопит. Теперь хожу только сюда.»</p>
-          <div class="testimonial-author">Мария<span>Мытищи</span></div>
+          <p class="testimonial-text">«Спасибо огромное косметологу Евгении — моя кожа стала чистой, ровной и ухожённой! Приятная атмосфера и очень хорошая энергетика!»</p>
+          <div class="testimonial-author">Татьяна П.<span>сентябрь 2025 · <a href="https://yandex.ru/maps/org/shikblesk495/237637622947/reviews/" target="_blank" rel="noopener">Яндекс.Карты</a></span></div>
         </div>
         <div class="testimonial">
-          <p class="testimonial-text">«Люблю увлажняющие уходы — эффект сразу виден. Атмосфера очень спокойная, как будто в уютной мастерской художника.»</p>
-          <div class="testimonial-author">Елена<span>Королёв</span></div>
+          <p class="testimonial-text">«Второй год хожу к Жене: она подобрала грамотный уход моей особо нежной и тонкой коже и никогда не предлагает ненужных процедур».</p>
+          <div class="testimonial-author">Ирина С.<span>декабрь 2023 · <a href="https://yandex.ru/maps/org/shikblesk495/237637622947/reviews/" target="_blank" rel="noopener">Яндекс.Карты</a></span></div>
         </div>
         <div class="testimonial">
-          <p class="testimonial-text">«Микротоки + RF — лучшее сочетание перед важным событием. Лицо подтянутое и отдохнувшее. Рекомендую!»</p>
-          <div class="testimonial-author">Ольга<span>Москва</span></div>
+          <p class="testimonial-text">«У меня чувствительная сухая кожа с куперозом, я переживала — но Женя просто фея лица. И лишнего никогда не накручивает».</p>
+          <div class="testimonial-author">Ольга<span>март 2023 · <a href="https://yandex.ru/maps/org/shikblesk495/237637622947/reviews/" target="_blank" rel="noopener">Яндекс.Карты</a></span></div>
         </div>
+        <div class="testimonial">
+          <p class="testimonial-text">«Делала чистки, мезотерапию, ТСА-пилинг. Видно, что человек — профессионал своего дела. Всегда очень внимательна, всегда на связи».</p>
+          <div class="testimonial-author">maxa n.<span>декабрь 2023 · <a href="https://yandex.ru/maps/org/shikblesk495/237637622947/reviews/" target="_blank" rel="noopener">Яндекс.Карты</a></span></div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">«Знакомы уже 3 года. Ни разу не была навязана какая-либо процедура — всё от типа кожи и моего желания. Цены приемлемые».</p>
+          <div class="testimonial-author">Евгения Е.<span>январь 2024 · <a href="https://yandex.ru/maps/org/shikblesk495/237637622947/reviews/" target="_blank" rel="noopener">Яндекс.Карты</a></span></div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">«Сестра посоветовала Евгению. Была уже 2 раза — прекрасный мастер, я в восторге от своей кожи!»</p>
+          <div class="testimonial-author">Марина В.<span>декабрь 2025 · <a href="https://yandex.ru/maps/org/shikblesk495/237637622947/reviews/" target="_blank" rel="noopener">Яндекс.Карты</a></span></div>
+        </div>
+      </div>
+      <div class="reviews-cta">
+        <a href="https://yandex.ru/maps/org/shikblesk495/237637622947/reviews/" class="btn btn-outline" target="_blank" rel="noopener">Читать все 33 отзыва</a>
+        <a href="https://yandex.ru/maps/org/shikblesk495/237637622947/reviews/" class="btn" target="_blank" rel="noopener">Оставить отзыв</a>
       </div>
     </div>
   </section>
