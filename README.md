@@ -2,7 +2,8 @@
 
 Одностраничный сайт для кабинета косметолога-эстетиста **Евгении** в Мытищах (Московская область).
 
-**Живой сайт:** https://shikblesk.vercel.app  
+**Живой сайт:** https://www.cosmetolog77.ru  
+**Зеркало:** https://shikblesk.vercel.app (бэкап)  
 **Репозиторий:** https://github.com/Romlya/shikblesk
 
 ---
